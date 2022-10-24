@@ -14,6 +14,7 @@ async function connect() {
 }
 
 connect().then(() => {
+    console.log('Connected to RabbitMQ');
     channel.consume('PAYMENTS', data => {
         console.log('Consuming PAYMENTS service');
         // const { products, userEmail } = JSON.parse(data.content);

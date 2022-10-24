@@ -1,8 +1,9 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
-import routes from './src/routes/paymentRoutes';
+import routes from './src/routes/transactionRoutes';
 import amqp from 'amqplib';
+import { TransactionSchema } from '../models/transactionModel';
 
 
 
@@ -14,24 +15,21 @@ async function connect() {
     channel = await connection.createChannel();
     await channel.assertQueue('TRANSACTIONS');
 
-
 }
 
 connect().then(() => {
+    console.log('Connected to RabbitMQ');
     channel.consume('TRANSACTIONS', data => {
         console.log('Consuming TRANSACTIONS service');
-        const { products, userEmail } = JSON.parse(data.content);
-        createOrder(products, userEmail)
-            .then(newOrder => {
-                channel.ack(data);
-                channel.sendToQueue(
-                    'PAYMENTS',
-                    Buffer.from(JSON.stringify({ newOrder }))
-                );
-            })
-            .catch(err => {
+
+        let newTransaction = new Transaction(JSON.parse(data.content));
+
+        newTransaction.save((err, transaction) => {
+            if (err) {
                 console.log(err);
-            });
+            }
+            console.log('transaction saved');
+        });
     });
 });
 const app = express();

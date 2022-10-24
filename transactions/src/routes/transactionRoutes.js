@@ -4,7 +4,7 @@ import {
     getPaymentWithID, 
     updatePayment,
     deletePayment 
-} from '../controllers/paymentController';
+} from '../controllers/transactionController';
 
 const routes = (app) => {
     app.route('/payment')

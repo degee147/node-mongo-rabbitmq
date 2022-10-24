@@ -2,10 +2,14 @@ import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
-export const PaymentSchema = new Schema({
+export const TransactionSchema = new Schema({
     customerId: {
         type: String,
         required: 'Enter customerId'
+    },
+    paymentId: {
+        type: String,
+        required: 'Enter paymentId'
     },
     productId: {
         type: String,

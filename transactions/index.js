@@ -3,9 +3,9 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import routes from './src/routes/transactionRoutes';
 import amqp from 'amqplib';
-import { TransactionSchema } from '../models/transactionModel';
+import { TransactionSchema } from './src/models/transactionModel';
 
-
+const Transaction = mongoose.model('Transaction', TransactionSchema);
 
 let channel;
 

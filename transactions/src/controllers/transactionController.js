@@ -3,6 +3,7 @@ import { TransactionSchema } from '../models/transactionModel';
 
 const Transaction = mongoose.model('Transaction', TransactionSchema);
 
+
 export const addNewTransaction = (req, res) => {
     let newTransaction = new Transaction(req.body);
 

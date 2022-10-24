@@ -3,25 +3,24 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 export const PaymentSchema = new Schema({
-    firstName: {
+    customerId: {
         type: String,
-        required: 'Enter a first name'
+        required: 'Enter customerId'
     },
-    lastName: {
+    productId: {
         type: String,
-        required: 'Enter a last name'
+        required: 'Enter productId'
     },
-    email: {
-        type: String
+    orderId: {
+        type: String,
+        required: 'Enter orderId'
     },
-    company: {
-        type: String
-    },
-    phone: {
-        type: Number
+    amount: {
+        type: Number,
+        required: 'Enter a valid amount'
     },
     created_date: {
-       type: Date,
-       default: Date.now 
+        type: Date,
+        default: Date.now
     }
 });

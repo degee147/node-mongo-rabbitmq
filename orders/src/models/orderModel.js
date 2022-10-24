@@ -3,22 +3,20 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 export const OrderSchema = new Schema({
-    firstName: {
+    customerId: {
         type: String,
-        required: 'Enter a first name'
+        required: 'Enter a customerId'
     },
-    lastName: {
+    productId: {
         type: String,
-        required: 'Enter a last name'
+        required: 'Enter a productId'
     },
-    email: {
+    amount: {
+        type: Number,
+        required: 'Enter a valid amount'
+    },
+    status: {
         type: String
-    },
-    company: {
-        type: String
-    },
-    phone: {
-        type: Number
     },
     created_date: {
        type: Date,

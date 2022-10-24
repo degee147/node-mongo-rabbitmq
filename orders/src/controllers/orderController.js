@@ -10,6 +10,7 @@ export const addNewOrder = (req, res) => {
         if (err) {
             res.send(err);
         }
+        
         res.json(order);
     });
 };

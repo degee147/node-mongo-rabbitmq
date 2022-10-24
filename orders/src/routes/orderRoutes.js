@@ -4,7 +4,7 @@ import {
     getOrderWithID, 
     updateOrder,
     deleteOrder 
-} from '../controllers/crmController';
+} from '../controllers/orderController';
 
 const routes = (app) => {
     app.route('/order')

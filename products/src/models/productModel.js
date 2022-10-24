@@ -3,21 +3,15 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 export const ProductSchema = new Schema({
-    firstName: {
+    productId: {
         type: String,
-        required: 'Enter a first name'
+        required: 'Enter productId'
     },
-    lastName: {
+    name: {
         type: String,
-        required: 'Enter a last name'
+        required: 'Enter name'
     },
-    email: {
-        type: String
-    },
-    company: {
-        type: String
-    },
-    phone: {
+    price: {
         type: Number
     },
     created_date: {

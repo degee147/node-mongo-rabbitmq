@@ -2,25 +2,25 @@ import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
-export const OrderSchema = new Schema({
+export const PaymentSchema = new Schema({
     customerId: {
         type: String,
-        required: 'Enter a customerId'
+        required: 'Enter customerId'
     },
     productId: {
         type: String,
-        required: 'Enter a productId'
+        required: 'Enter productId'
+    },
+    orderId: {
+        type: String,
+        required: 'Enter orderId'
     },
     amount: {
         type: Number,
         required: 'Enter a valid amount'
     },
-    status: {
-        type: String,
-        default: "pending"
-    },
     created_date: {
-       type: Date,
-       default: Date.now 
+        type: Date,
+        default: Date.now
     }
 });

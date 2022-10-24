@@ -8,7 +8,7 @@ services:
       - "4000:4000"
     depends_on:
       - mongo
-      - rabbitmq
+      # - rabbitmq
   orders:
     container_name: orders
     restart: always
@@ -17,7 +17,7 @@ services:
       - "4001:4001"
     depends_on:
       - mongo
-      - rabbitmq
+      # - rabbitmq
   payments:
     container_name: payments
     restart: always
@@ -26,7 +26,7 @@ services:
       - "4002:4002"
     depends_on:
       - mongo
-      - rabbitmq
+      # - rabbitmq
   products:
     container_name: products
     restart: always
@@ -35,7 +35,16 @@ services:
       - "4003:4003"
     depends_on:
       - mongo
-      - rabbitmq
+      # - rabbitmq
+  transactions:
+    container_name: transactions
+    restart: always
+    build: ./transactions
+    ports:
+      - "4004:4004"
+    depends_on:
+      - mongo
+      # - rabbitmq
   mongo:
     container_name: mongo
     image: mongo
@@ -45,13 +54,12 @@ services:
     volumes:
       - ./data:/data/db
     ports:
-       - "27018:27018"
+      - "27018:27018"
 
-
-  rabbitmq:
-    image: rabbitmq:3.10-rc-management-alpine
-    ports:
+  # rabbitmq:
+    # image: rabbitmq:3.10-rc-management-alpine
+    # ports:
       # AMQP protocol port
-      - "5672:5672"
+      # - "5672:5672"
       # HTTP management UI
-      - "15672:15672"          
+      # - "15672:15672"

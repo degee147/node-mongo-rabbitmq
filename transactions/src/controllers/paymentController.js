@@ -3,23 +3,15 @@ import { PaymentSchema } from '../models/paymentModel';
 const amqp = require('amqplib');
 
 
-
 let channel;
 
 async function connect() {
     const amqpServer = process.env.RABBITMQ_URL;
     const connection = await amqp.connect(amqpServer);
     channel = await connection.createChannel();
-    await channel.assertQueue('PAYMENTS');
+    await channel.assertQueue('PAYMENT');
 }
-
-connect().then(() => {
-    channel.consume('PAYMENTS', data => {
-        console.log('Consuming PAYMENTS service');
-        // const { products, userEmail } = JSON.parse(data.content);
-        
-    });
-});
+connect();
 
 const Payment = mongoose.model('Payment', PaymentSchema);
 

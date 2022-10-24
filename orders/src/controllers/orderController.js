@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import axios from 'axios';
 import { OrderSchema } from '../models/crmModel';
 
 const Order = mongoose.model('Order', OrderSchema);
@@ -10,7 +11,15 @@ export const addNewOrder = (req, res) => {
         if (err) {
             res.send(err);
         }
-        
+
+        axios.post('/payment', order)
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
         res.json(order);
     });
 };
@@ -34,7 +43,7 @@ export const getOrderWithID = (req, res) => {
 }
 
 export const updateOrder = (req, res) => {
-    Order.findOneAndUpdate({ _id: req.params.orderId}, req.body, { new: true }, (err, order) => {
+    Order.findOneAndUpdate({ _id: req.params.orderId }, req.body, { new: true }, (err, order) => {
         if (err) {
             res.send(err);
         }
@@ -47,6 +56,6 @@ export const deleteOrder = (req, res) => {
         if (err) {
             res.send(err);
         }
-        res.json({ message: 'Successfully deleted order'});
+        res.json({ message: 'Successfully deleted order' });
     })
 }

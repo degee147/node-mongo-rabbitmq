@@ -1,32 +1,32 @@
 import { 
-    addNewContact, 
-    getContacts, 
-    getContactWithID, 
-    updateContact,
-    deleteContact 
+    addNewOrder, 
+    getOrders, 
+    getOrderWithID, 
+    updateOrder,
+    deleteOrder 
 } from '../controllers/crmController';
 
 const routes = (app) => {
-    app.route('/contact')
+    app.route('/order')
     .get((req, res, next) => {
         // middleware
         console.log(`Request from: ${req.originalUrl}`)
         console.log(`Request type: ${req.method}`)
         next();
-    }, getContacts)
+    }, getOrders)
     
     // POST endpoint
-    .post(addNewContact);
+    .post(addNewOrder);
 
-    app.route('/contact/:contactId')
-    // get specific contact
-    .get(getContactWithID)
+    app.route('/order/:orderId')
+    // get specific order
+    .get(getOrderWithID)
     
     // put request
-    .put(updateContact)
+    .put(updateOrder)
 
     // delete request
-    .delete(deleteContact);
+    .delete(deleteOrder);
 }
 
 export default routes;

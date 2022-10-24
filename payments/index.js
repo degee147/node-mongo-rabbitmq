@@ -1,14 +1,14 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
-import routes from './src/routes/crmRoutes';
+import routes from './src/routes/paymentRoutes';
 
 const app = express();
-const PORT = 4000;
+const PORT = 4002;
 
 // mongoose connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://mongo:27017/crm');
+mongoose.connect('mongodb://mongo:27018/payments');
 
 // bodyparser setup
 app.use(bodyParser.urlencoded({ extended: true }));

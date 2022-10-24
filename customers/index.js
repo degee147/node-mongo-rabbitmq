@@ -8,7 +8,7 @@ const PORT = 4000;
 
 // mongoose connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://mongo:27017/users');
+mongoose.connect('mongodb://mongo:27018/users');
 
 // bodyparser setup
 app.use(bodyParser.urlencoded({ extended: true }));
